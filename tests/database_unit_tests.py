@@ -320,7 +320,7 @@ class TestDatabase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        cls.database.clean_testing_data()
+        cls.database.clean_tables()
         cls.database.close()
 
 

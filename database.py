@@ -46,6 +46,7 @@ class Database:
         try:
             self.__cursor.execute(query, [user_id])
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -55,6 +56,7 @@ class Database:
             values = (email, password, user_id)
             self.__cursor.execute(query, values)
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -65,6 +67,7 @@ class Database:
             values = (category_id, user_id, title, creation_date)
             self.__cursor.execute(query, values)
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -89,6 +92,7 @@ class Database:
         try:
             self.__cursor.execute(query, [category_id])
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -98,6 +102,7 @@ class Database:
             values = (title, category_id)
             self.__cursor.execute(query, values)
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -137,6 +142,7 @@ class Database:
             values = (task_id, user_id, title, category_id, creation_date, date, completed, repeating, emailed)
             self.__cursor.execute(query, values)
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -145,6 +151,7 @@ class Database:
         try:
             self.__cursor.execute(query, [task_id])
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -156,6 +163,7 @@ class Database:
             values = (title, category_id, date, repeating, completed, emailed, task_id)
             self.__cursor.execute(query, values)
             self.__connection.commit()
+            return 200
         except Error as error:
             return error
 
@@ -163,12 +171,12 @@ class Database:
         self.__connection.close()
         self.__cursor.close()
 
-    def clean_testing_data(self):
-        clean_tasks_table = '''DELETE FROM tasks WHERE task_id > 10'''
+    def clean_tables(self):
+        clean_tasks_table = '''DELETE FROM tasks'''
         self.__cursor.execute(clean_tasks_table)
-        clean_categories_table = '''DELETE FROM categories WHERE category_id > 10'''
+        clean_categories_table = '''DELETE FROM categories'''
         self.__cursor.execute(clean_categories_table)
-        clean_users_table = '''DELETE FROM users WHERE id > 10'''
+        clean_users_table = '''DELETE FROM users'''
         self.__cursor.execute(clean_users_table)
         self.__connection.commit()
 
